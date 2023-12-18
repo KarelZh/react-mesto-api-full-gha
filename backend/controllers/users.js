@@ -1,4 +1,5 @@
 /* eslint-disable consistent-return */
+const { NODE_ENV, JWT_SECRET } = process.env;
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const user = require('../models/user');
@@ -56,7 +57,7 @@ const login = async (req, res, next) => {
   const { email, password } = req.body;
   return user.findUserByCredentials(email, password)
     .then((pols) => {
-      const token = jwt.sign({ _id: pols._id }, 'some-secret-key', { expiresIn: '7d' });
+      const token = jwt.sign({ _id: pols._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' });
       res.send({ token });
     }).catch((error) => {
       if (error.name === 'UnauthorizedError') {
