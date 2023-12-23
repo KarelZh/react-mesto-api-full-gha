@@ -1,6 +1,6 @@
 import { api } from "../utils/Api";
 
-export const BASE_URL = 'https://auth.nomoreparties.co';
+export const BASE_URL = 'http://localhost:3000';
 
 export const register = ({ email, password }) => {
   return fetch(`${BASE_URL}/signup`, {
@@ -23,7 +23,11 @@ export const authorize = ({ email, password }) => {
     body: JSON.stringify({ email, password})
   })
   .then(api._checkResponse)
-}
+  .then((data) => {
+    localStorage.setItem('jwt', data.token)
+    return data;
+  })
+};
 
 export const getContent = (token) => {
   return fetch(`${BASE_URL}/users/me`, {

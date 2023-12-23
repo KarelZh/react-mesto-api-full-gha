@@ -44,6 +44,8 @@ const createUser = async (req, res, next) => {
       _id: pols._id, name: pols.name, about: pols.about, avatar: pols.avatar, email: pols.email,
     }))
     .catch((error) => {
+      console.log(email);
+      console.log(error, email);
       if (error.code === 11000) {
         return next(new ConflictError('Такой пользователь уже существует'));
       }
