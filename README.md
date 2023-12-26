@@ -9,8 +9,8 @@
 
 ## Ссылки на проект
 
-IP 158.160.129.147
+IP 158.160.131.213
 
-Frontend https://zhenya.nomoredomainsmonster.ru
+Frontend https://karel.nomoredomainsmonster.ru
 
-Backend https://api.zhenya.nomoredomainsmonster.ru
+Backend https://api.karel.nomoredomainsmonster.ru
