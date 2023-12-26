@@ -1,6 +1,6 @@
 import { api } from "../utils/Api";
 
-export const BASE_URL = 'https://api.zhenya.nomoredomainsmonster.ru/';
+export const BASE_URL = 'https://api.karel.nomoredomainsmonster.ru/';
 
 export const register = ({ email, password }) => {
   return fetch(`${BASE_URL}/signup`, {
