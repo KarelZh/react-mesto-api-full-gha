@@ -162,6 +162,12 @@ function App() {
         //  }).catch((err) => {
         //    console.error(err)
         //  })
+        //api.getInitialCards()
+        //  .then((res) => {
+        //    setCards(res)
+        //  }).catch((err) => {
+        //    console.error(err)
+        //})
         navigate('/')
       }
     }).catch((err) => {

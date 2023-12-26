@@ -105,7 +105,7 @@ class Api {
   }
 }
 const api = new Api({
-  baseUrl: 'https://api.karel.nomoredomainsmonster.ru/'
+  baseUrl: 'https://api.karel.nomoredomainsmonster.ru'
 });
 
 export {api};
