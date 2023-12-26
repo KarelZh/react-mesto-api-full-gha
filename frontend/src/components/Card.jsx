@@ -6,8 +6,8 @@ function Card({src, alt, title, likeLength, onClick, idCard, likes, onCardLike, 
 const currentCard = useContext(CurrentContext);
 const isOwn = idCard === currentCard._id;
 
-const isLiked = likes.some((i) => {
-   return i._id === currentCard._id
+const isLiked = likes.some((id) => {
+   return id === currentCard._id
 })
 const cardLikeButtonClassName = ( 
   `element__button ${isLiked && 'element__button_type_like'}` 

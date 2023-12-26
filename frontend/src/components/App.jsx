@@ -32,14 +32,14 @@ function App() {
 
   const navigate = useNavigate();
 
-  //useEffect(() => {
-  //  api.getUserInfo()
-  //    .then((res) => {
-  //      setCurrentUser(res)
-  //    }).catch((err) => {
-  //      console.error(err)
-  //    })
-  //}, [])
+  useEffect(() => {
+    api.getUserInfo()
+      .then((res) => {
+        setCurrentUser(res)
+      }).catch((err) => {
+        console.error(err)
+      })
+  }, [])
 
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true)
@@ -70,7 +70,7 @@ function App() {
     })
   }
   function handleCardLike(likes, id) {
-    const isLiked = likes.some(i => i._id === currentUser._id);
+    const isLiked = likes.some(id => id === currentUser._id);
     api.likeCard(id, !isLiked).then((newCard) => {
       setCards((state) => state.map((c) => c._id === id ? newCard : c));
     }).catch((err) => {
@@ -79,7 +79,7 @@ function App() {
    
   }
   function handleDeleteLike(likes, id) {
-    const isLiked = likes.some(i => i._id === currentUser._id);
+    const isLiked = likes.some(id => id === currentUser._id);
     api.deleteLikeCard(id, isLiked).then((newCard) => {
       setCards((state) => state.map((c) => c._id === id ? newCard : c));
     }).catch((err) => {
@@ -112,22 +112,22 @@ function App() {
       console.error(err)
     })
   }
-  //useEffect(() => {
-  //  api.getInitialCards()
-  //  .then((res) => {
-  //    setCards(res)
-  //  }).catch((err) => {
-  //    console.error(err)
-  //  })
-  //}, [])
+  useEffect(() => {
+    api.getInitialCards()
+    .then((res) => {
+      setCards(res)
+    }).catch((err) => {
+      console.error(err)
+    })
+  }, [])
 
   const jwt = localStorage.getItem('jwt');
   
   useEffect(() => {
     if(jwt) {
       Auth.getContent(jwt).then((res) => {
-        if(res.data) {
-          setUserData(res.data)
+        if(res) {
+          setUserData(res)
           setLoggedIn(true)
           navigate('/')
         }
@@ -156,18 +156,12 @@ function App() {
       if(res.token) {
         localStorage.setItem('jwt', res.token);
         setLoggedIn(true)
-        api.getUserInfo()
-          .then((res) => {
-            setCurrentUser(res)
-          }).catch((err) => {
-            console.error(err)
-          })
-        api.getInitialCards()
-          .then((res) => {
-            setCards(res)
-          }).catch((err) => {
-            console.error(err)
-          })
+        //api.getUserInfo()
+        //  .then((res) => {
+        //    setCurrentUser(res)
+        //  }).catch((err) => {
+        //    console.error(err)
+        //  })
         navigate('/')
       }
     }).catch((err) => {

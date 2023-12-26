@@ -41,7 +41,7 @@ function Main({
               alt={item.name}
               onClick={onCardClick}
               key={item._id}
-              idCard={item.owner._id}
+              idCard={item.owner}
               likes={item.likes}
               onCardLike={onCardLike}
               deleteLikeCard={deleteCardLike}

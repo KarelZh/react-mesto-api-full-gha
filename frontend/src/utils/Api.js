@@ -57,9 +57,9 @@ class Api {
     }).then(this._checkResponse)
   }
 
-  deleteCard() {
+  deleteCard(id) {
     const token = localStorage.getItem('jwt');
-    return fetch(`${this._options.baseUrl}/cards`, {
+    return fetch(`${this._options.baseUrl}/cards/${id}`, {
       method: 'DELETE',
       headers: {
         authorization: `Bearer ${token}`,
@@ -68,9 +68,9 @@ class Api {
     }).then(this._checkResponse)
   }
 
-  likeCard() {
+  likeCard(id) {
     const token = localStorage.getItem('jwt');
-    return fetch(`${this._options.baseUrl}/cards/likes`, {
+    return fetch(`${this._options.baseUrl}/cards/${id}/likes`, {
       method: 'PUT',
       headers: {
         authorization: `Bearer ${token}`,
@@ -79,9 +79,9 @@ class Api {
     }).then(this._checkResponse)
   }
 
-  deleteLikeCard() {
+  deleteLikeCard(id) {
     const token = localStorage.getItem('jwt');
-    return fetch(`${this._options.baseUrl}/cards/likes`, {
+    return fetch(`${this._options.baseUrl}/cards/${id}/likes`, {
       method: 'DELETE',
       headers: {
         authorization: `Bearer ${token}`,
