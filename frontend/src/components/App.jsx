@@ -73,7 +73,7 @@ function App() {
     })
   }
   function handleCardLike(likes, id) {
-    const isLiked = likes.some(id => id === currentUser._id);
+    const isLiked = likes.some(i => i._id === currentUser._id);
     api.likeCard(id, !isLiked).then((newCard) => {
       setCards((state) => state.map((c) => c._id === id ? newCard : c));
     }).catch((err) => {
@@ -82,7 +82,7 @@ function App() {
    
   }
   function handleDeleteLike(likes, id) {
-    const isLiked = likes.some(id => id === currentUser._id);
+    const isLiked = likes.some(i => i._id === currentUser._id);
     api.deleteLikeCard(id, isLiked).then((newCard) => {
       setCards((state) => state.map((c) => c._id === id ? newCard : c));
     }).catch((err) => {

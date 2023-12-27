@@ -35,7 +35,6 @@ const deleteCard = async (req, res, next) => {
       .catch(next);
   };
   card.findById(req.params.cardId)
-    .populate('likes')
     .then((item) => {
       if (!item) {
         throw new NotFound('Карточки не существует');
