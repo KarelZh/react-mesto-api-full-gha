@@ -32,14 +32,17 @@ function App() {
 
   const navigate = useNavigate();
 
+  const jwt = localStorage.getItem('jwt');
   useEffect(() => {
+    if(jwt) {
     api.getUserInfo()
       .then((res) => {
         setCurrentUser(res)
       }).catch((err) => {
         console.error(err)
       })
-  }, [])
+    }
+  }, [loggedIn])
 
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true)
@@ -113,15 +116,15 @@ function App() {
     })
   }
   useEffect(() => {
-    api.getInitialCards()
-    .then((res) => {
-      setCards(res)
-    }).catch((err) => {
-      console.error(err)
-    })
-  }, [])
-
-  const jwt = localStorage.getItem('jwt');
+    if(jwt) {
+      api.getInitialCards()
+      .then((res) => {
+        setCards(res)
+      }).catch((err) => {
+        console.error(err)
+      })
+    }
+  }, [loggedIn])
   
   useEffect(() => {
     if(jwt) {
