@@ -35,6 +35,7 @@ const deleteCard = async (req, res, next) => {
       .catch(next);
   };
   card.findById(req.params.cardId)
+    .populate(['likes', 'owner'])
     .then((item) => {
       if (!item) {
         throw new NotFound('Карточки не существует');
@@ -53,6 +54,7 @@ const updateLike = (req, res, next) => {
     { $addToSet: { likes: req.user._id } }, // добавить _id в массив, если его там нет
     { new: true },
   )
+    .populate(['likes', 'owner'])
     .then((item) => {
       if (!item) {
         return next(new NotFound('Карточки не существует'));
@@ -68,6 +70,7 @@ const deleteLike = (req, res, next) => {
     { $pull: { likes: req.user._id } }, // убрать _id из массива
     { new: true },
   )
+    .populate(['likes', 'owner'])
     .then((item) => {
       if (!item) {
         return next(new NotFound('Карточки не существует'));
